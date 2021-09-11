@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//add to program - Banknotes in your drawing amount
+
 #define CODES 3
 
 float allMoney;
@@ -48,6 +50,51 @@ void printAcoountMenu() {
 
 }
 
+int amountToBanknotes(int amount) {
+
+    int tempAmount = amount;
+
+    int count_500 = tempAmount / 500; // 123 / 500 = 0
+
+    tempAmount = tempAmount % 500; // 123 % 500 = 123
+
+    int count_100 = tempAmount / 100; // 123 / 100 = 1
+
+    tempAmount = tempAmount % 100; // 123 % 100 = 23
+
+    int count_50 = tempAmount / 50; // 23 / 50 = 0
+
+    tempAmount = tempAmount % 50; // 23 % 50 = 23
+
+    int count_20 = tempAmount / 20; // 23 / 20 = 1
+
+    tempAmount = tempAmount % 20; // 23 % 20 = 3
+
+    int count_10 = tempAmount / 10; // 3 / 10 = 0
+
+    tempAmount = tempAmount % 10; // 3 % 10 = 3
+
+    int count_5 = tempAmount / 5; // 3 / 5 = 0
+
+    int count_1 = tempAmount % 5; // 3 % 5 = 3
+
+
+if( count_500 != 0 ) { printf(" %d banknotes x $ 500  \n", count_500); }
+if( count_100 != 0 ) { printf(" %d banknotes x $ 100  \n", count_100); }
+if( count_50 != 0 )  { printf(" %d banknotes x $ 50 \n", count_50); }
+if( count_20 != 0 )  { printf(" %d banknotes x $ 20 \n", count_20); }
+if( count_10 != 0 )  { printf(" %d banknotes x $ 10 \n", count_10); }
+if( count_5 != 0 )   { printf(" %d banknotes x $ 5 \n", count_5); }
+if( count_1 != 0 )   { printf(" %d banknotes x $ 1 ", count_1); }
+
+
+
+
+    //printf("%.0f", tempAmount);
+
+
+}
+
 void yellow(void) {
     printf("\033[1;33m");
 }
@@ -61,7 +108,7 @@ int main()
 
     system("color 07");
 
-    allMoney = 10000;
+    allMoney = 10093;
 
     int menuATMchoice, tempAccountCode, countIntegerInCode;
 
@@ -201,11 +248,15 @@ int main()
 
                 } else {
 
-                    printf("Succesfully withdrawal $ %d from your account.\n", amountFromAccount );
+                    printf("Succesfully withdrawal $ %d from your account.\n\n", amountFromAccount );
+
+                    amountToBanknotes(amountFromAccount);
+
+                    printSpace();
 
                     codesMoney[loggedCodeID] = codesMoney[loggedCodeID] - amountFromAccount;
 
-                    printf("Now you have $ %.2f in your card.\n", codesMoney[loggedCodeID] );
+                    printf("Now you have $ %.2f in your card.\n\n", codesMoney[loggedCodeID] );
 
                     allMoney = allMoney - amountFromAccount;
 
